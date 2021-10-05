@@ -9,6 +9,8 @@ spec:
       app: gitlab-kubernetes-agent
   template:
     metadata:
+      labels:
+        app: gitlab-kubernetes-agent
     spec:
       serviceAccountName: {{ include "gitlab-kubernetes-agent.serviceAccountName" . }}
       containers:
