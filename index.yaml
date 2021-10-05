@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  gitlab-kubernetes-agent:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-10-05T00:22:56.528832077Z"
+    description: A Helm chart for Kubernetes Agent for gitlab
+    digest: e509c291b985aa370e0ae688a28852ff89fa4a53ef2a1b1ed90f871e24888573
+    name: gitlab-kubernetes-agent
+    type: application
+    urls:
+    - https://github.com/giles-betteromics/gitlab-kubernetes-agent/releases/download/gitlab-kubernetes-agent-0.1.0/gitlab-kubernetes-agent-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-10-05T00:22:56.289156556Z"
