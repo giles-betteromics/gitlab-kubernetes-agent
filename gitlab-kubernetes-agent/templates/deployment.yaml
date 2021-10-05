@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitlab-kubernetes-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitlab-kubernetes-agent
+  template:
+    metadata:
+    spec:
+      serviceAccountName: {{ include "gitlab-kubernetes-agent.serviceAccountName" . }}
+      containers:
+      - name: agent
+        # Make sure to specify a matching version for production
+        image: "registry.gitlab.com/gitlab-org/cluster-integration/gitlab-agent/agentk:stable"
+        args:
+        - --token-file=/config/token
+        - --kas-address
+        - wss://kas.gitlab.com # for GitLab.com users, use this KAS.
+        volumeMounts:
+        - name: token-volume
+          mountPath: /config
+      volumes:
+      - name: token-volume
+        secret:
+          secretName: gitlab-kubernetes-agent-token
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1

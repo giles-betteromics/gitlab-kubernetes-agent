@@ -1,0 +1,29 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: gitlab-kubernetes-agent-write
+rules:
+- resources:
+  - '*'
+  apiGroups:
+  - '*'
+  verbs:
+  - create
+  - update
+  - delete
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: gitlab-kubernetes-agent-read
+rules:
+- resources:
+  - '*'
+  apiGroups:
+  - '*'
+  verbs:
+  - get
+  - list
+  - watch
+---
